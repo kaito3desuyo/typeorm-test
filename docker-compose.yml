@@ -10,6 +10,24 @@ services:
       - POSTGRES_PASSWORD=password
     volumes:
       - db-data:/var/lib/postgresql/data
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    tty: true
+    volumes:
+      - .:/home/typeorm-test/
+      - nodemodules:/home/typeorm-test/node_modules
+    ports:
+      - 3000:3000
+    command: sh -c "sh /home/typeorm-test/wait.sh && npm run start:dev"
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://postgres:password@db/test
+      DATABASE_TEST_URL: postgresql://postgres:password@db/test
 
 volumes:
   nodemodules:
