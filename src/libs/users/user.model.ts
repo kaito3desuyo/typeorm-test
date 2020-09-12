@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { TaskModel } from '../tasks/task.model';
 
 @Entity()
 export class UserModel {
@@ -7,4 +8,11 @@ export class UserModel {
 
   @Column()
   name: string;
+
+  @OneToMany(
+    () => TaskModel,
+    task => task.user,
+    { cascade: true },
+  )
+  tasks?: TaskModel[];
 }

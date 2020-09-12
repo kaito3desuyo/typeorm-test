@@ -3,14 +3,14 @@ import { TypeOrmModule } from '@nestjs/typeorm/dist/typeorm.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import ORM_CONFIG from './core/config/ormconfig';
-import { UserModel } from './libs/users/user.model';
+import { UserModule } from './libs/users/user.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       ...ORM_CONFIG,
     }),
-    TypeOrmModule.forFeature([UserModel]),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

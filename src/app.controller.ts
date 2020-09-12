@@ -6,14 +6,10 @@ import { UserModel } from './libs/users/user.model';
 
 @Controller()
 export class AppController {
-  constructor(
-    private readonly appService: AppService,
-    @InjectRepository(UserModel)
-    private readonly repo: Repository<UserModel>,
-  ) {}
+  constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): any {
-    return this.repo.save({ name: 'hoge' });
+  getHello(): string {
+    return 'Hello World!';
   }
 }

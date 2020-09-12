@@ -27,7 +27,7 @@ services:
     environment:
       NODE_ENV: development
       DATABASE_URL: postgresql://postgres:password@db/test
-      DATABASE_TEST_URL: postgresql://postgres:password@db/test
+      DATABASE_TEST_URL: postgresql://postgres:password@db/test2
 
 volumes:
   nodemodules:
